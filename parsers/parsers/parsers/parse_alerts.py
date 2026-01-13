@@ -1,16 +1,19 @@
 import json
 
+HIGH_ONLY = True  # change to False to count all alerts
+
 with open("sample_alerts.json", "r") as f:
     alerts = json.load(f)
 
 counts = {}
 
 for alert in alerts:
-    user = alert["user"]
-    if user in counts:
-        counts[user] += 1
-    else:
-        counts[user] = 1
+    if HIGH_ONLY and alert.get("severity") != "High":
+        continue
 
-for user, count in counts.items():
-    print(f"{user}: {count} alerts")
+    user = alert.get("user", "unknown")
+    counts[user] = counts.get(user, 0) + 1
+
+for user, count in sorted(counts.items(), key=lambda x: x[1], reverse=True):
+    mode = "HIGH" if HIGH_ONLY else "ALL"
+    print(f"[{mode}] {user}: {count} alerts")
