@@ -1,0 +1,5 @@
+{
+  "jsmith": {"department": "HR", "title": "HR Manager"},
+  "ajones": {"department": "Finance", "title": "Accountant"},
+  "mjane": {"department": "Engineering", "title": "Software Engineer"}
+}
