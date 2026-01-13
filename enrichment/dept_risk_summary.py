@@ -1,3 +1,5 @@
+import csv 
+
 import json
 
 # Load alerts
@@ -18,6 +20,13 @@ if alert.get("severity") != "High" or dept not in ["HR", "Finance"]:
     dept = directory.get(user, {}).get("department", "Unknown")
 
     dept_counts[dept] = dept_counts.get(dept, 0) + 1
+
+# Write summary to CSV
+with open("dept_risk_report.csv", "w", newline="") as f:
+    writer = csv.writer(f)
+    writer.writerow(["Department", "High Severity Alerts"])
+    for dept, count in sorted(dept_counts.items(), key=lambda x: x[1], reverse=True):
+        writer.writerow([dept, count])
 
 # Print summary sorted by most alerts
 for dept, count in sorted(dept_counts.items(), key=lambda x: x[1], reverse=True):
