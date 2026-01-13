@@ -11,9 +11,8 @@ with open("user_directory.json", "r") as f:
 # Count HIGH severity alerts by department
 dept_counts = {}
 
-for alert in alerts:
-    if alert.get("severity") != "High":
-        continue
+if alert.get("severity") != "High" or dept not in ["HR", "Finance"]:
+    continue
 
     user = alert.get("user", "unknown")
     dept = directory.get(user, {}).get("department", "Unknown")
