@@ -1,0 +1,6 @@
+[
+  {"alert_id": 1, "user": "jsmith", "device": "HR-LAP-22", "severity": "High"},
+  {"alert_id": 2, "user": "ajones", "device": "FIN-WS-9", "severity": "Low"},
+  {"alert_id": 3, "user": "jsmith", "device": "HR-LAP-22", "severity": "High"},
+  {"alert_id": 4, "user": "mjane", "device": "ENG-WS-4", "severity": "Medium"}
+]
